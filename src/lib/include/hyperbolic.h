@@ -1,0 +1,6 @@
+#ifndef TRIGHYPE_HYPERBOLIC_H
+#define TRIGHYPE_HYPERBOLIC_H
+
+void hyperbolic();
+
+#endif //TRIGHYPE_HYPERBOLIC_H
