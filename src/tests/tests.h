@@ -4,4 +4,7 @@
 int test_sin();
 int test_cos();
 
+int test_sinh();
+int test_cosh();
+
 #endif //TRIGHYPE_TESTS_H

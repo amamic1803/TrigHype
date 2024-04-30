@@ -42,3 +42,5 @@ set_target_properties(trighype_tests PROPERTIES
 )
 add_test(NAME test_sin COMMAND trighype_tests sin)
 add_test(NAME test_cos COMMAND trighype_tests cos)
+add_test(NAME test_sinh COMMAND trighype_tests sinh)
+add_test(NAME test_cosh COMMAND trighype_tests cosh)

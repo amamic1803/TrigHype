@@ -4,6 +4,8 @@
 double t_sin(double x) {
     x = fmod(x, 2 * M_PI);
 
+    // Taylor series: sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
+
     double result = x;
     double old_result = INFINITY;
     double factorial = 1.0;
@@ -27,6 +29,8 @@ double t_sin(double x) {
 
 double t_cos(double x) {
     x = fmod(x, 2 * M_PI);
+
+    // Taylor series: cos(x) = 1 - x^2 / 2! + x^4 / 4! - x^6 / 6! + ...
 
     double result = 1;
     double old_result = INFINITY;
