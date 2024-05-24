@@ -1,6 +1,14 @@
 #include "trigonometric.h"
 #include <math.h>
 
+double t_degrad(double degrees) {
+    return degrees * M_PI / 180.0;
+}
+
+double t_raddeg(double radians) {
+    return radians * 180.0 / M_PI;
+}
+
 double t_sin(double x) {
     x = fmod(x, 2 * M_PI);
 

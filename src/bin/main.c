@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "trighype.h"
 
@@ -10,10 +11,9 @@ int main(int argc, char *argv[]) {
             break;
         }
     }
-    char *version = "0.1.0";
 
     if (argc <= 1) {
-        printf("trighype v%s\n\n", version);
+        printf("trighype v%s\n\n", TRIGHYPE_VERSION);
         printf("Usage: %s [OPTIONS] <COMMAND> <VALUE>\n\n", filename);
         printf("Try '%s --help' for more information.\n", filename);
         return 1;
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
         char *command = "";
         char *value_str = "";
 
-        for (int i = 0; i < argc; i++) {
+        for (int i = 1; i < argc; i++) {
             if (strcmp("--version", argv[i]) == 0 || strcmp("-V", argv[i]) == 0) {
                 version_flag = true;
             } else if (strcmp("--help", argv[i]) == 0 || strcmp("-h", argv[i]) == 0) {
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
         }
 
         if (help_flag) {
-            printf("trighype v%s\n\n", version);
+            printf("trighype v%s\n\n", TRIGHYPE_VERSION);
             printf("Usage: %s [OPTIONS] <COMMAND> <VALUE>\n\n", filename);
             printf("Arguments:\n");
             printf("  <COMMAND>       The command to run\n");
@@ -60,65 +60,39 @@ int main(int argc, char *argv[]) {
             printf("  -h, --help      Print help\n");
             printf("  -d, --degrees   Use degrees instead of radians\n");
         } else if (version_flag) {
-            printf("%s\n", version);
+            printf("%s\n", TRIGHYPE_VERSION);
         } else if (strcmp(command, "") != 0 && strcmp(value_str, "") == 0) {
             fprintf(stderr, "Missing value parameter\n");
             return 1;
-        } else if (strcmp("sin", command) == 0) {
-            if (argc <= 2) {
-                printf("Usage: %s sin <VALUE>\n", filename);
-                return 1;
-            } else {
-                double value = atof(argv[2]);
-                printf("sin(%f) = %f\n", value, t_sin(value));
-            }
-        } else if (strcmp("cos", command) == 0) {
-            if (argc <= 2) {
-                printf("Usage: %s cos <VALUE>\n", filename);
-                return 1;
-            } else {
-                double value = atof(argv[2]);
-                printf("cos(%f) = %f\n", value, t_cos(value));
-            }
-        } else if (strcmp("sinh", command) == 0) {
-            if (argc <= 2) {
-                printf("Usage: %s sinh <VALUE>\n", filename);
-                return 1;
-            } else {
-                double value = atof(argv[2]);
-                printf("sinh(%f) = %f\n", value, t_sinh(value));
-            }
-        } else if (strcmp("cosh", command) == 0) {
-            if (argc <= 2) {
-                printf("Usage: %s cosh <VALUE>\n", filename);
-                return 1;
-            } else {
-                double value = atof(argv[2]);
-                printf("cosh(%f) = %f\n", value, t_cosh(value));
-            }
-        } else if (strcmp("degrad", command) == 0) {
-            if (argc <= 2) {
-                printf("Usage: %s degrad <VALUE>\n", filename);
-                return 1;
-            } else {
-                double value = atof(argv[2]);
-                printf("degrad(%f) = %f\n", value, t_degrad(value));
-            }
-        } else if (strcmp("raddeg", command) == 0) {
-            if (argc <= 2) {
-                printf("Usage: %s raddeg <VALUE>\n", filename);
-                return 1;
-            } else {
-                double value = atof(argv[2]);
-                printf("raddeg(%f) = %f\n", value, t_raddeg(value));
-            }
         } else {
-            printf("Unknown command: %s\n", argv[1]);
-            return 1;
+            char *endptr;
+            double value = strtod(value_str, &endptr);
+            if (value_str == endptr && value == 0.0) {
+                fprintf(stderr, "Invalid value parameter\n");
+                return 1;
+            }
+            if (degrees_flag) {
+                value = t_degrad(value);
+            }
+
+            if (strcmp("sin", command) == 0) {
+                printf("%lf\n", t_sin(value));
+            } else if (strcmp("cos", command) == 0) {
+                printf("%lf\n", t_cos(value));
+            } else if (strcmp("sinh", command) == 0) {
+                printf("%lf\n", t_sinh(value));
+            } else if (strcmp("cosh", command) == 0) {
+                printf("%lf\n", t_cosh(value));
+            } else if (strcmp("degrad", command) == 0) {
+                printf("%lf\n", degrees_flag ? value : t_degrad(value));
+            } else if (strcmp("raddeg", command) == 0) {
+                printf("%lf\n", t_raddeg(value));
+            } else {
+                printf("Unknown command: %s\n", argv[1]);
+                return 1;
+            }
         }
     }
-
-    // printf("mod: %f", t_sin(3.14159265358979323846 / 2.0));
 
     return 0;
 }

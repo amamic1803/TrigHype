@@ -4,4 +4,6 @@
 #include "trigonometric.h"
 #include "hyperbolic.h"
 
+#define TRIGHYPE_VERSION "0.1.0"
+
 #endif //TRIGHYPE_TRIGHYPE_H
