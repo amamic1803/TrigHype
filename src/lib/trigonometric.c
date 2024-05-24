@@ -1,4 +1,5 @@
 #include "trigonometric.h"
+#include <stdbool.h>
 #include <math.h>
 
 double t_degrad(double degrees) {

@@ -23,16 +23,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install GCC and Ninja
+      - name: Install Ninja
         run: |
           case ${{ matrix.os }} in 
               ubuntu-latest)
               sudo apt update
-              sudo apt install -y ninja-build gcc-13
+              sudo apt install -y ninja-build
               ;;
               macos-latest)
               brew install ninja
-              brew install gcc@13
               ;;
               windows-latest)
               choco install ninja
