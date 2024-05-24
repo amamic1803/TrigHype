@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.28)
 project(TrigHype C)
 
 set(CMAKE_C_STANDARD 23)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 include(CTest)
 
 # Library target
@@ -31,8 +32,7 @@ set_target_properties(trighype_cli PROPERTIES
 )
 
 # Tests target
-add_executable(trighype_tests src/tests/tests.c
-        src/tests/tests.h)
+add_executable(trighype_tests src/tests/tests.c src/tests/tests.h)
 target_include_directories(trighype_tests PRIVATE src/lib/include)
 target_link_libraries(trighype_tests trighype_lib)
 target_link_libraries(trighype_tests m)
