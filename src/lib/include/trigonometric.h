@@ -1,9 +1,6 @@
 #ifndef TRIGHYPE_TRIGONOMETRIC_H
 #define TRIGHYPE_TRIGONOMETRIC_H
 
-double t_degrad(double degrees);
-double t_raddeg(double radians);
-
 double t_sin(double x);
 double t_cos(double x);
 double t_tan(double x);

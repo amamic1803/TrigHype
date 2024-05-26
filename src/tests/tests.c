@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {
 }
 
 int test_sin() {
-    double x = - M_PI * 5;
-    while (x <= M_PI * 5) {
+    double x = - PI * 5;
+    while (x <= PI * 5) {
         double result = t_sin(x);
         double expected = sin(x);
         if (fabs(result - expected) > 0.0000000000001) {
@@ -35,8 +35,8 @@ int test_sin() {
 }
 
 int test_cos() {
-    double x = - M_PI * 5;
-    while (x <= M_PI * 5) {
+    double x = - PI * 5;
+    while (x <= PI * 5) {
         double result = t_cos(x);
         double expected = cos(x);
         if (fabs(result - expected) > 0.0000000000001) {
@@ -48,8 +48,8 @@ int test_cos() {
 }
 
 int test_sinh() {
-    double x = - M_PI * 5;
-    while (x <= M_PI * 5) {
+    double x = - PI * 5;
+    while (x <= PI * 5) {
         double result = t_sinh(x);
         double expected = sinh(x);
         if (fabs(result - expected) > 0.000001) {
@@ -61,8 +61,8 @@ int test_sinh() {
 }
 
 int test_cosh() {
-    double x = - M_PI * 5;
-    while (x <= M_PI * 5) {
+    double x = - PI * 5;
+    while (x <= PI * 5) {
         double result = t_cosh(x);
         double expected = cosh(x);
         if (fabs(result - expected) > 0.000001) {

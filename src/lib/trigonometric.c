@@ -1,17 +1,10 @@
 #include "trigonometric.h"
+#include "trig_math.h"
 #include <stdbool.h>
 #include <math.h>
 
-double t_degrad(double degrees) {
-    return degrees * M_PI / 180.0;
-}
-
-double t_raddeg(double radians) {
-    return radians * 180.0 / M_PI;
-}
-
 double t_sin(double x) {
-    x = fmod(x, 2 * M_PI);
+    x = fmod(x, 2 * PI);
 
     // Taylor series: sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
 
@@ -37,7 +30,7 @@ double t_sin(double x) {
 }
 
 double t_cos(double x) {
-    x = fmod(x, 2 * M_PI);
+    x = fmod(x, 2 * PI);
 
     // Taylor series: cos(x) = 1 - x^2 / 2! + x^4 / 4! - x^6 / 6! + ...
 
