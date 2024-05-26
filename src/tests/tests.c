@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     }
 }
 
-int test_sin() {
+int test_sin(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
         double result = t_sin(x);
@@ -34,7 +34,7 @@ int test_sin() {
     return 0;
 }
 
-int test_cos() {
+int test_cos(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
         double result = t_cos(x);
@@ -47,7 +47,7 @@ int test_cos() {
     return 0;
 }
 
-int test_sinh() {
+int test_sinh(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
         double result = t_sinh(x);
@@ -60,7 +60,7 @@ int test_sinh() {
     return 0;
 }
 
-int test_cosh() {
+int test_cosh(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
         double result = t_cosh(x);
