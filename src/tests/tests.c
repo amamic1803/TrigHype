@@ -8,67 +8,67 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    if (strcmp(argv[1], "sin") == 0) {
-        return test_sin();
-    } else if (strcmp(argv[1], "cos") == 0) {
-        return test_cos();
-    } else if (strcmp(argv[1], "sinh") == 0) {
-        return test_sinh();
-    } else if (strcmp(argv[1], "cosh") == 0) {
-        return test_cosh();
+    if (strcmp(argv[1], "sin_t") == 0) {
+        return test_sin_t() ? 0 : 1;
+    } else if (strcmp(argv[1], "cos_t") == 0) {
+        return test_cos_t() ? 0 : 1;
+    } else if (strcmp(argv[1], "sinh_t") == 0) {
+        return test_sinh_t() ? 0 : 1;
+    } else if (strcmp(argv[1], "cosh_t") == 0) {
+        return test_cosh_t() ? 0 : 1;
     } else {
         return -1;
     }
 }
 
-int test_sin(void) {
+bool test_sin_t(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
-        double result = t_sin(x);
+        double result = t_sin_t(x);
         double expected = sin(x);
         if (fabs(result - expected) > 0.0000000000001) {
-            return -1;
+            return false;
         }
         x += 0.00001;
     }
-    return 0;
+    return true;
 }
 
-int test_cos(void) {
+bool test_cos_t(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
-        double result = t_cos(x);
+        double result = t_cos_t(x);
         double expected = cos(x);
         if (fabs(result - expected) > 0.0000000000001) {
-            return -1;
+            return false;
         }
         x += 0.00001;
     }
-    return 0;
+    return true;
 }
 
-int test_sinh(void) {
+bool test_sinh_t(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
-        double result = t_sinh(x);
+        double result = t_sinh_t(x);
         double expected = sinh(x);
         if (fabs(result - expected) > 0.000001) {
-            return -1;
+            return false;
         }
         x += 0.00001;
     }
-    return 0;
+    return true;
 }
 
-int test_cosh(void) {
+bool test_cosh_t(void) {
     double x = - PI * 5;
     while (x <= PI * 5) {
-        double result = t_cosh(x);
+        double result = t_cosh_t(x);
         double expected = cosh(x);
         if (fabs(result - expected) > 0.000001) {
-            return -1;
+            return false;
         }
         x += 0.00001;
     }
-    return 0;
+    return true;
 }

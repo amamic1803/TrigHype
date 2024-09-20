@@ -1,9 +1,9 @@
 #include "trig_math.h"
 
-double t_degrad(double degrees) {
+double t_deg2rad(double degrees) {
     return degrees * PI / 180.0;
 }
 
-double t_raddeg(double radians) {
+double t_rad2deg(double radians) {
     return radians * 180.0 / PI;
 }

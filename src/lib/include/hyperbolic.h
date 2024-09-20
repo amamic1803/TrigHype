@@ -2,7 +2,9 @@
 #define TRIGHYPE_HYPERBOLIC_H
 
 double t_sinh(double x);
+double t_sinh_t(double x);
 double t_cosh(double x);
+double t_cosh_t(double x);
 double t_tanh(double x);
 double t_coth(double x);
 double t_sech(double x);

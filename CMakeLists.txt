@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(TrigHype C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 set(CMAKE_C_CLANG_TIDY clang-tidy -warnings-as-errors=*)
@@ -45,7 +45,7 @@ set_target_properties(trighype_tests PROPERTIES
         OUTPUT_NAME trighype_tests
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests
 )
-add_test(NAME test_sin COMMAND trighype_tests sin)
-add_test(NAME test_cos COMMAND trighype_tests cos)
-add_test(NAME test_sinh COMMAND trighype_tests sinh)
-add_test(NAME test_cosh COMMAND trighype_tests cosh)
+add_test(NAME test_sin COMMAND trighype_tests sin_t)
+add_test(NAME test_cos COMMAND trighype_tests cos_t)
+add_test(NAME test_sinh COMMAND trighype_tests sinh_t)
+add_test(NAME test_cosh COMMAND trighype_tests cosh_t)

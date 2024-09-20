@@ -1,4 +1,4 @@
-#include <stdbool.h>
+#include <float.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,11 +51,19 @@ int main(int argc, char *argv[]) {
             printf("  <VALUE>         The value parameter (in radians by default for trigonometric functions)\n\n");
             printf("Commands:\n");
             printf("  sin             Calculate the sine of a value\n");
+            printf("  sin_t           Calculate the sine of a value using Taylor series\n");
             printf("  cos             Calculate the cosine of a value\n");
+            printf("  cos_t           Calculate the cosine of a value using Taylor series\n");
+            printf("  tan             Calculate the tangent of a value\n");
+            printf("  cot             Calculate the cotangent of a value\n");
             printf("  sinh            Calculate the hyperbolic sine of a value\n");
+            printf("  sinh_t          Calculate the hyperbolic sine of a value using Taylor series\n");
             printf("  cosh            Calculate the hyperbolic cosine of a value\n");
-            printf("  degrad          Convert degrees to radians\n");
-            printf("  raddeg          Convert radians to degrees\n\n");
+            printf("  cosh_t          Calculate the hyperbolic cosine of a value using Taylor series\n");
+            printf("  tanh            Calculate the hyperbolic tangent of a value\n");
+            printf("  coth            Calculate the hyperbolic cotangent of a value\n");
+            printf("  deg2rad         Convert degrees to radians\n");
+            printf("  rad2deg         Convert radians to degrees\n\n");
             printf("Options:\n");
             printf("  -V, --version   Print version\n");
             printf("  -h, --help      Print help\n");
@@ -73,21 +81,21 @@ int main(int argc, char *argv[]) {
                 return 1;
             }
             if (degrees_flag) {
-                value = t_degrad(value);
+                value = t_deg2rad(value);
             }
 
-            if (strcmp("sin", command) == 0) {
-                printf("%lf\n", t_sin(value));
-            } else if (strcmp("cos", command) == 0) {
-                printf("%lf\n", t_cos(value));
-            } else if (strcmp("sinh", command) == 0) {
-                printf("%lf\n", t_sinh(value));
-            } else if (strcmp("cosh", command) == 0) {
-                printf("%lf\n", t_cosh(value));
-            } else if (strcmp("degrad", command) == 0) {
-                printf("%lf\n", degrees_flag ? value : t_degrad(value));
-            } else if (strcmp("raddeg", command) == 0) {
-                printf("%lf\n", t_raddeg(value));
+            if (strcmp("sin_t", command) == 0) {
+                printf("%.*g\n", DBL_DIG, t_sin_t(value));
+            } else if (strcmp("cos_t", command) == 0) {
+                printf("%.*g\n", DBL_DIG, t_cos_t(value));
+            } else if (strcmp("sinh_t", command) == 0) {
+                printf("%.*g\n", DBL_DIG, t_sinh_t(value));
+            } else if (strcmp("cosh_t", command) == 0) {
+                printf("%.*g\n", DBL_DIG, t_cosh_t(value));
+            } else if (strcmp("deg2rad", command) == 0) {
+                printf("%.*g\n", DBL_DIG, t_deg2rad(value));
+            } else if (strcmp("rad2deg", command) == 0) {
+                printf("%.*g\n", DBL_DIG, degrees_flag ? value : t_rad2deg(value));
             } else {
                 printf("Unknown command: %s\n", argv[1]);
                 return 1;

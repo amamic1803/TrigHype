@@ -1,7 +1,7 @@
 #include "hyperbolic.h"
 #include <math.h>
 
-double t_sinh(double x) {
+double t_sinh_t(double x) {
     // Taylor series: sinh(x) = x + x^3 / 3! + x^5 / 5! + x^7 / 7! + ...
 
     double result = x;
@@ -18,7 +18,7 @@ double t_sinh(double x) {
     return result;
 }
 
-double t_cosh(double x) {
+double t_cosh_t(double x) {
     // Taylor series: cosh(x) = 1 + x^2 / 2! + x^4 / 4! + x^6 / 6! + ...
 
     double result = 1;
