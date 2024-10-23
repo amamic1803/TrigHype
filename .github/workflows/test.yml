@@ -41,6 +41,9 @@ jobs:
               choco install mingw
               export PATH=/c/ProgramData/mingw64/mingw64/bin:$PATH
               echo $PATH
+              bash
+              gcc --version
+              where gcc
               ;;
           esac
 
