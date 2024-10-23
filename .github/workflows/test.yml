@@ -38,6 +38,7 @@ jobs:
               ;;
               windows-latest)
               choco install ninja
+              choco install mingw
               ;;
           esac
 
