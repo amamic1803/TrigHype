@@ -25,40 +25,61 @@ jobs:
 
       - name: Install tools
         run: |
-          case ${{ matrix.os }} in 
-              ubuntu-24.04)
+          if [ "$RUNNER_OS" == "Linux" ]; then
               sudo apt update
-              sudo apt install -y ninja-build
-              ;;
-              macos-latest)
+              sudo apt install ninja-build -y
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+              choco install ninja
+              choco install mingw
+          elif [ "$RUNNER_OS" == "macOS" ]; then
               brew install ninja
               brew install llvm
               ln -s "$(brew --prefix llvm)/bin/clang-format" "/usr/local/bin/clang-format"
               ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
-              ;;
-              windows-latest)
-              choco install ninja
-              choco install mingw
-              export PATH=/c/ProgramData/mingw64/mingw64/bin:$PATH
-              export CC=gcc
-              export CXX=g++
-              echo $PATH
-              bash
-              gcc --version
-              where gcc
-              ;;
-          esac
+          else
+              echo "$RUNNER_OS not supported"
+              exit 1
+          fi
 
       - name: Compile and test
         run: |
-          cmake \
-            -DCMAKE_C_COMPILER=gcc \
-            -DCMAKE_CXX_COMPILER=g++ \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_C_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
-            -DCMAKE_CXX_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
-            -G Ninja \
-            -S . -B build
-          cmake --build build
-          cd ./build
-          ctest
+          if [ "$RUNNER_OS" == "Linux" ]; then
+              cmake \
+                -DCMAKE_C_COMPILER=gcc \
+                -DCMAKE_CXX_COMPILER=g++ \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_C_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
+                -DCMAKE_CXX_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
+                -G Ninja \
+                -S . -B build
+              cmake --build build
+              cd ./build
+              ctest
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+              cmake \
+                -DCMAKE_C_COMPILER=C:\ProgramData\mingw64\mingw64\bin\gcc.exe \
+                -DCMAKE_CXX_COMPILER=C:\ProgramData\mingw64\mingw64\bin\g++.exe \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_C_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
+                -DCMAKE_CXX_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
+                -G Ninja \
+                -S . -B build
+              cmake --build build
+              cd ./build
+              ctest
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+              cmake \
+                -DCMAKE_C_COMPILER=gcc \
+                -DCMAKE_CXX_COMPILER=g++ \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_C_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
+                -DCMAKE_CXX_FLAGS='-Wall -Wextra -Wpedantic -Werror' \
+                -G Ninja \
+                -S . -B build
+              cmake --build build
+              cd ./build
+              ctest
+          else
+              echo "$RUNNER_OS not supported"
+              exit 1
+          fi
