@@ -39,6 +39,8 @@ jobs:
               windows-latest)
               choco install ninja
               choco install mingw
+              export PATH=/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin:$PATH
+              echo $PATH
               ;;
           esac
 
