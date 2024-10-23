@@ -13,7 +13,7 @@ jobs:
     name: Test and Lint
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-24.04, macos-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -26,7 +26,7 @@ jobs:
       - name: Install tools
         run: |
           case ${{ matrix.os }} in 
-              ubuntu-latest)
+              ubuntu-24.04)
               sudo apt update
               sudo apt install -y ninja-build
               ;;
