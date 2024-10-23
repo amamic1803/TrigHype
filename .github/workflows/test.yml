@@ -40,6 +40,8 @@ jobs:
               choco install ninja
               choco install mingw
               export PATH=/c/ProgramData/mingw64/mingw64/bin:$PATH
+              export CC=gcc
+              export CXX=g++
               echo $PATH
               bash
               gcc --version
