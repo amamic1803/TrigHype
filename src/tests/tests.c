@@ -1,24 +1,22 @@
-#include <math.h>
-#include <string.h>
 #include "trighype.h"
 #include "tests.h"
+#include <math.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         return -1;
     }
 
-    if (strcmp(argv[1], "sin_t") == 0) {
+    if (strcmp(argv[1], "sin_t") == 0)
         return test_sin_t() ? 0 : 1;
-    } else if (strcmp(argv[1], "cos_t") == 0) {
+    if (strcmp(argv[1], "cos_t") == 0)
         return test_cos_t() ? 0 : 1;
-    } else if (strcmp(argv[1], "sinh_t") == 0) {
+    if (strcmp(argv[1], "sinh_t") == 0)
         return test_sinh_t() ? 0 : 1;
-    } else if (strcmp(argv[1], "cosh_t") == 0) {
+    if (strcmp(argv[1], "cosh_t") == 0)
         return test_cosh_t() ? 0 : 1;
-    } else {
-        return -1;
-    }
+    return -1;
 }
 
 bool test_sin_t(void) {
